@@ -1,0 +1,5 @@
+<%= form_for @tweet do |f| %>
+  <%= f.text_area :text, cols: 40, rows: 5 ,maxlength: 140 %>
+  <%= f.text_field :image %>
+  <%= f.submit '保存' %>
+<% end %>
