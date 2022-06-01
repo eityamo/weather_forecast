@@ -231,6 +231,7 @@ GEM
 
 PLATFORMS
   -darwin-21
+  ruby
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
@@ -255,7 +256,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.6p146
 
 BUNDLED WITH
    2.3.10
