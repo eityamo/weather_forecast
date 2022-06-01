@@ -3,10 +3,10 @@ class TweetsController < ApplicationController
 
   def twitter_client
     @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = 'PgzAlGqrfIQPwsoIrfZYRRYZq'
-      config.consumer_secret = 'gQyeNt9In4jIOj50Uh3nSLqIfCU8NcZPGMI0246ayMqvU5RqHm'
-      config.access_token = '1531062177678827520-TKJvIzVjeEa9OCs1NJ3RyqW3K5qspX'
-      config.access_token_secret = 'ehsEvQIJDds92TxBNbq748T0XEI7vtPnVJbztyHigO2H4'
+      config.consumer_key = 'IMGvgDHHEV1T20bIAREopD7vP'
+      config.consumer_secret = 'luKARxyFnq6vD0nK15ACH7CFuQHEYH6x9qcAxwNXMDXHBixxgh'
+      config.access_token = '1531062177678827520-reFf7v4ImSkuJoSzS02fagQlhpTPZN'
+      config.access_token_secret = 'u6XoaHuHCjq6SOtWSQMAVIm5xFlRfybznI1gC42av33XZ'
     end
   end
 
@@ -22,6 +22,7 @@ class TweetsController < ApplicationController
   def post
     status = '今日は晴れ'
     @client.update(status)
+    redirect_to :root
   end
 
   private
