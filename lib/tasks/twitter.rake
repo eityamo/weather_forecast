@@ -19,9 +19,9 @@ end
 
 def twitter_client
   @client = Twitter::REST::Client.new do |config|
-    config.consumer_key = 'IMGvgDHHEV1T20bIAREopD7vP'
-    config.consumer_secret = 'luKARxyFnq6vD0nK15ACH7CFuQHEYH6x9qcAxwNXMDXHBixxgh'
-    config.access_token = '1531062177678827520-reFf7v4ImSkuJoSzS02fagQlhpTPZN'
-    config.access_token_secret = 'u6XoaHuHCjq6SOtWSQMAVIm5xFlRfybznI1gC42av33XZ'
+    config.consumer_key = Rails.application.credentials.twitter[:consumer_key]
+    config.consumer_secret = Rails.application.credentials.twitter[:consumer_secret]
+    config.access_token = Rails.application.credentials.twitter[:access_token]
+    config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
   end
 end

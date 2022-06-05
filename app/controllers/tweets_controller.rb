@@ -17,11 +17,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
-  def create
-    Tweet.create(create_params)
-    redirect_to :root
-  end
-
   def post
     uri = URI.parse('https://weather.tsukumijima.net/api/forecast/city/130010')
     json = Net::HTTP.get(uri)
@@ -33,11 +28,5 @@ class TweetsController < ApplicationController
     status = "明日の#{prefecture}の天気は#{telop}、最高気温は#{max_celsius}℃、最低気温は#{min_celsius}℃です。"
     @client.update(status)
     redirect_to :root
-  end
-
-  private
-
-  def create_params
-    params.require(:tweet).permit(:text, :image)
   end
 end
