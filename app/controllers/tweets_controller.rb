@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 
 class TweetsController < ApplicationController
-  before_action :twitter_client, except: :new
+  before_action :twitter_client, only: %i[post]
 
   def twitter_client
     @client = Twitter::REST::Client.new do |config|
@@ -13,12 +13,11 @@ class TweetsController < ApplicationController
     end
   end
 
-  def new
-    @tweet = Tweet.new
-  end
+  def new; end
 
   def post
-    uri = URI.parse('https://weather.tsukumijima.net/api/forecast/city/130010')
+    prefecture = Prefecture.all.sample
+    uri = URI.parse("https://weather.tsukumijima.net/api/forecast/city/#{prefecture.forecast}")
     json = Net::HTTP.get(uri)
     result = JSON.parse(json, { symbolize_names: true })
     prefecture = result[:location][:prefecture]

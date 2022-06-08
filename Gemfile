@@ -67,6 +67,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'twitter'
+gem 'twitter', '>= 6.0'
 
 gem 'whenever', require: false
+
+gem "activerecord-import"
+
+gem 'rb-readline'
+
+gem 'pry-rails'
