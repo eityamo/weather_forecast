@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_05_125520) do
+ActiveRecord::Schema.define(version: 2022_06_09_023514) do
+
+  create_table "actresses", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "cup", null: false
+    t.string "prefecture", null: false
+    t.string "image", null: false
+    t.string "digital", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name", null: false
