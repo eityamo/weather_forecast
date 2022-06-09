@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2022_06_09_023514) do
     t.string "prefecture", null: false
     t.string "image", null: false
     t.string "digital", null: false
+    t.integer "prefecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_actresses_on_prefecture_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

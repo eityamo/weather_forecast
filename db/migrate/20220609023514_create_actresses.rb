@@ -6,6 +6,7 @@ class CreateActresses < ActiveRecord::Migration[5.2]
       t.string :prefecture, null: false
       t.string :image, null: false
       t.string :digital, null: false
+      t.references :prefecture, foreign_key: true
 
       t.timestamps
     end

@@ -12,8 +12,10 @@ class ImportActress
       json = Net::HTTP.get(uri)
       results = JSON.parse(json, { symbolize_names: true })[:result][:actress]
       results.each do |result|
-        if result[:name].present? && result[:cup].present? && result[:prefecture].present? && result[:image].present? && result[:digital].present?
-          Actress.create(name: result[:name], cup: result[:cup], prefecture: result[:prefecture], image: result[:image], digital: result[:digital])
+        if result[:name].present? && result[:cup].present? && result[:prefectures].present? && result[:imageURL].present? && result[:imageURL][:large].present? && result[:listURL].present? && result[:listURL][:digital].present?
+          if Prefecture.where("name LIKE ?", "#{result[:prefectures]}%").first != nil
+            Actress.create(name: result[:name], cup: result[:cup], prefecture: result[:prefectures], image: result[:imageURL][:large], digital: result[:listURL][:digital], prefecture_id: Prefecture.where("name LIKE ?", "#{result[:prefectures]}%").first.id)
+          end
         end
       end
       if results.length < 100
