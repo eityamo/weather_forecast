@@ -20,8 +20,11 @@ class TweetsController < ApplicationController
   def new; end
 
   def post
+    # 都道府県をランダムで選ぶ
     prefecture = Prefecture.all.sample
+    # 選んだ都道府県出身のFanza女優の中からランダムに選ぶ
     actress = Actress.where(prefecture_id: prefecture.id).sample
+    # 天気予報のAPIを叩く
     uri = URI.parse("https://weather.tsukumijima.net/api/forecast/city/#{prefecture.forecast}")
     json = Net::HTTP.get(uri)
     result = JSON.parse(json, { symbolize_names: true })
@@ -29,10 +32,16 @@ class TweetsController < ApplicationController
     telop = result[:forecasts][1][:telop]
     max_celsius = result[:forecasts][1][:temperature][:max][:celsius]
     min_celsius = result[:forecasts][1][:temperature][:min][:celsius]
-    status = "お疲れ様です、明日のお天気をお伝えいたします。\n明日の#{prefecture}の天気は#{telop}、最高気温は#{max_celsius}℃、最低気温は#{min_celsius}℃です。\n今夜のお天気お姉さん:#{actress.name}(#{actress.cup})\n#{actress.digital}\n#今夜のお天気お姉さん\n#{actress.image}"
-    image_uri = URI.parse(actress.image)
-    media = image_uri.open
-    @client.update_with_media(status, media)
+    status = "#今夜のお天気お姉さん は \##{actress.name} (#{actress.cup})です。\n明日、#{I18n.l(Date.tomorrow)}の#{prefecture}の天気は#{telop}、最高気温は#{max_celsius}℃、最低気温は#{min_celsius}℃です。\nプロフィール → #{actress.digital}\n#天気予報 #明日の天気 #気象庁"
+    weather_image = result[:forecasts][1][:image][:url].gsub('svg', 'png')
+    map_image = "https://thumb.ac-illust.com/c2/c2383d5af9d9d6dce6a49b2d35dcd53c_t.jpeg"
+    actress_image = actress.image
+    image_urls = [map_image, weather_image, actress_image]
+    images = image_urls.map do |image_url|
+      uri = URI.parse(image_url)
+      uri.open
+    end
+    @client.update_with_media(status, images)
     redirect_to :root
   end
 end
