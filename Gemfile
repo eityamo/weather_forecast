@@ -73,6 +73,4 @@ gem 'whenever', require: false
 
 gem "activerecord-import"
 
-gem 'rb-readline'
-
 gem 'pry-rails'
