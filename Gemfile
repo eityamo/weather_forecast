@@ -56,7 +56,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 # 本番環境用のgemグループを新しく作成しPostgresを指定
@@ -74,3 +74,5 @@ gem 'whenever', require: false
 gem "activerecord-import"
 
 gem 'pry-rails'
+
+gem 'rails-i18n'
