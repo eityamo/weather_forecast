@@ -5,7 +5,7 @@ class ImportCsv
     model_name = model.to_s.classify
     table_name = model_name.tableize
     file_name ||= table_name.singularize
-    path = "db/csv_data/#{file_name}.csv"
+    path = Rails.root.join("db/csv_data/#{file_name}.csv")
 
     list = []
     CSV.foreach(path, headers: true) do |row|
