@@ -15,6 +15,10 @@ job_type :rake,
          'source /Users/eityamo/.zshrc; export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; cd /Users/eityamo/Proj/weather_forecast && RAILS_ENV=production bundle exec rake twitter:tweet'
 
 # 1日ごとに動かす
-every 1.day, at: ['6:00 pm', '10:00 pm'] do
+# every 1.day, at: ['6:00 pm', '10:00 pm'] do
+#   rake 'twitter:tweet'
+# end
+
+every 5.minutes do
   rake 'twitter:tweet'
 end
